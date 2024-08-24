@@ -17,7 +17,7 @@ This project is a **Master Server implementation** for the [H1-Mod]("https://git
 1. **Clone the repository:**
     ```bash
     git clone https://github.com/aid7n/h1-master.git
-    cd h1-mod-master-server
+    cd h1-master
     ```
 2. **Install dependencies:**
     ```bash
