@@ -1,23 +1,22 @@
 import { RemoteInfo, Socket } from "dgram";
 import { IServerItem, TAcceptableCmds } from "../interfaces";
+import { getParams } from "../utils/command";
 import { log } from "../utils/logger";
 import { getDedicatedServers } from "./server";
-import { getParams } from "../utils/command";
 
 const eot = Buffer.from("454f54000000", "hex");
 const blankHeader = Buffer.from([0xff, 0xff, 0xff, 0xff]);
 
 const buildGetServersResData = (servers: IServerItem[]) => {
   const delimiter = Buffer.from("\\", "binary");
-  const commandName = Buffer.from("getserversRes");
+  const commandName = Buffer.from("getserversResponse ");
 
-  let responseData = Buffer.concat([blankHeader, commandName]);
+  let responseData = Buffer.concat([blankHeader, commandName, delimiter]);
 
   servers.forEach((server) => {
     const ipBuffer = Buffer.from(server.ipParts);
     const portBuffer = Buffer.alloc(2);
     portBuffer.writeUInt16BE(server.port, 0);
-
     responseData = Buffer.concat([responseData, ipBuffer, portBuffer]);
     responseData = Buffer.concat([responseData, delimiter]);
   });

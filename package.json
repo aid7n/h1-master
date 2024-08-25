@@ -1,6 +1,6 @@
 {
   "name": "h1-master",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Master server implementation for H1-Mod client (Call of Duty: Modern Warfare Remastered) which fetches the master list from IW4MAdmin-Master",
   "main": "dist/app.js",
   "scripts": {

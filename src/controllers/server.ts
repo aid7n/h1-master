@@ -1,10 +1,10 @@
 import { createSocket } from "dgram";
 import { serverCfg } from "../cfg/server";
-import { log } from "../utils/logger";
-import { buildServerList } from "../services/server";
-import { sendResponse } from "../services/response";
-import { checkCmd } from "../utils/command";
 import { TAcceptableCmds } from "../interfaces";
+import { sendResponse } from "../services/response";
+import { buildServerList } from "../services/server";
+import { checkCmd } from "../utils/command";
+import { log } from "../utils/logger";
 
 const { udpPort, listFetchTime } = serverCfg;
 

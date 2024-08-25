@@ -1,10 +1,10 @@
 import axios from "axios";
 import { load } from "cheerio";
-import { resolveHost } from "./dns";
-import { log } from "../utils/logger";
-import { formatIpv4, ipRegex } from "../utils/ip";
 import { serverCfg } from "../cfg/server";
 import { IServerItem, TAcceptableGameNames } from "../interfaces";
+import { formatIpv4, ipRegex } from "../utils/ip";
+import { log } from "../utils/logger";
+import { resolveHost } from "./dns";
 
 const { game, raidmaxApiUrl, mandatoryServerParts } = serverCfg;
 
