@@ -17,8 +17,12 @@ const buildGetServersResData = (servers: IServerItem[]) => {
     const ipBuffer = Buffer.from(server.ipParts);
     const portBuffer = Buffer.alloc(2);
     portBuffer.writeUInt16BE(server.port, 0);
-    responseData = Buffer.concat([responseData, ipBuffer, portBuffer]);
-    responseData = Buffer.concat([responseData, delimiter]);
+    responseData = Buffer.concat([
+      responseData,
+      ipBuffer,
+      portBuffer,
+      delimiter,
+    ]);
   });
 
   responseData = Buffer.concat([responseData, eot]);
@@ -38,10 +42,6 @@ export const sendResponse = (
   switch (cmd) {
     case "getservers": {
       const [game, protocol, full, empty] = getParams(fullMsg);
-      log(`game :: ${game}`);
-      log(`protocol :: ${protocol}`);
-      log(`full :: ${full === "full"}`);
-      log(`empty :: ${empty === "empty"}`);
       const responseData = buildGetServersResData(
         getDedicatedServers(full === "full", empty === "empty")
       );
@@ -53,9 +53,12 @@ export const sendResponse = (
           log(`response sent to ${addr}:${port}`);
         }
       });
+
+      break;
     }
     default: {
       // do nothing
+      break;
     }
   }
 };
